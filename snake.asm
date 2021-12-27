@@ -104,11 +104,11 @@ CODESEG
           xor ah, al ; xoroshift 16+ algorithm
           mov cl, al
           rol cl, 1
-		  rol cl, 1
-		  rol cl, 1
-		  rol cl, 1
-		  rol cl, 1
-		  rol cl, 1
+    		  rol cl, 1
+    		  rol cl, 1
+    		  rol cl, 1
+    		  rol cl, 1
+    		  rol cl, 1
           xor cl, ah
           mov ch, cl
           shl ch, 1
@@ -116,14 +116,23 @@ CODESEG
           mov al, cl
           mov ch, ah
           rol ch, 1
-		  rol ch, 1
-		  rol ch, 1
+    		  rol ch, 1
+    		  rol ch, 1
           mov ah, ch ; random number goes to AX
           mov dx, 0
           mov cx, 2000
           div cx
           shl dx, 1
           mov ax, dx ; random number is between 0-4000
+
+          mov bx, 0
+          
+          algoCheck:
+          cmp [bx], ax
+          jz algo
+          inc bx
+          cmp bx, 300
+          jnz algoCheck
 
       mov bx, [bp+4] ; [bp+4] = rnd ptr
       mov [bx], ax ; place new number in rnd variable
