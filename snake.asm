@@ -130,8 +130,8 @@ CODESEG
           algoCheck:
           cmp [bx], ax
           jz algo
-          inc bx
-          cmp bx, 300
+          add bx, 2
+          cmp bx, 600
           jnz algoCheck
 
       mov bx, [bp+4] ; [bp+4] = rnd ptr
